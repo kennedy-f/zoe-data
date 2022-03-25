@@ -55,7 +55,7 @@ export function useGet<Data = any, Vars = any>(
     }
   });
 
-  const refetch = async (props: Omit<FetchProps, "fetchOnInitialize">) => {
+  const refetch = async (props: FetchProps) => {
     await fetch(props);
   };
 
