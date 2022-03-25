@@ -15,7 +15,7 @@ This package is under construction and this doc will be updated
 ### useGet
 Will run a axios.get() and bring to you the data.
 
-###usage
+#### Usage
 
     import React from "react";    
     import { useGet, ApiConfigProvider} from 'zoe-data'
