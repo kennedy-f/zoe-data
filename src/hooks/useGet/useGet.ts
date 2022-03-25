@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
+import { useEffect, useState } from "react";
+import Axios, { AxiosResponse } from "axios";
 import { useAxiosConfig } from "context";
 
 interface UseGetProps<Vars = any> {
@@ -23,16 +23,20 @@ export function useGet<Data = any, Vars = any>(
   const [loading, setLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<number>();
   const [error, setError] = useState<unknown>();
+  const [axiosOriginalResponse, setAxiosOriginalResponse] =
+    useState<AxiosResponse<Data, any>>();
+
   const api = Axios.create(axiosConfig);
+
   const fetch = async () => {
     setLoading(true);
     try {
-      const { data: responseData, status: responseStatus } =
-        await api.get<Data>(query, {
-          params: variables,
-        });
-      setData(responseData);
-      setStatus(responseStatus);
+      const response = await api.get<Data>(query, {
+        params: variables,
+      });
+      setAxiosOriginalResponse(axiosOriginalResponse);
+      setData(response.data);
+      setStatus(response.status);
     } catch (err) {
       setError(err);
     }
@@ -44,7 +48,7 @@ export function useGet<Data = any, Vars = any>(
     if (fetchOnInitialize) {
       fetch();
     }
-  }, []);
+  });
 
-  return { data, loading, status, error };
+  return { data, loading, status, error, axiosOriginalResponse };
 }
