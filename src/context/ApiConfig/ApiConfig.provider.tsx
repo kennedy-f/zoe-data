@@ -3,7 +3,7 @@ import { AxiosConfigContext } from "./AxiosConfigContext";
 import { AxiosRequestConfig } from "axios";
 
 interface ApiConfigProviderProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   axiosConfigParams?: AxiosRequestConfig;
 }
 
