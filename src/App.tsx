@@ -1,6 +1,6 @@
 import React from "react";
 import { ApiConfigProvider } from "./context";
-import { UseGetTest } from "./hooks/useGet/UseGetTest";
+import { UseGetTest } from "tests/UseGetTest";
 
 export function App() {
   return (

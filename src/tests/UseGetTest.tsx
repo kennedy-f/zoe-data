@@ -1,5 +1,5 @@
 import React from "react";
-import { useGet } from "./useGet";
+import { useGet } from "hooks/useGet/useGet";
 import { GitHubResponse } from "test/github-response";
 
 export function UseGetTest() {
