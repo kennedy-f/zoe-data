@@ -1,2 +1,2 @@
-export * from './AxiosConfigContext';
-export * from './ApiConfig.provider';
+export * from "./AxiosConfigContext";
+export { ApiConfigProvider as ZoeProvider } from "./ApiConfig.provider";
