@@ -1,12 +1,44 @@
+
 # Zoe data
 
-This library is an compiled of hooks to call api 
+This library provides hooks to make your APIs calls. 
+
+Use [Axios](https://axios-http.com/) and receive axios params if you need 😉 
 
 Inspired by [Apollo Client](https://www.apollographql.com/docs/react/)
 
-## Hooks 
+
+This package is under construction and this doc will be updated
+
+## Hooks
 
 ### useGet
-Will run your query and bring back the data 
+Will run a axios.get() and bring to you the data.
 
-This package is under construction and this doc will be updated 
+####usage
+
+    import React from "react";    
+    import { useGet, ApiConfigProvider} from 'zoe-data'
+    
+    function UseGetExample() {  
+      const { data, loading, status, axiosOriginalResponse } = useGet<GitHubResponse[]>(  
+        "/users/kennedy-f/repos"  
+      );  
+      
+      if (status === 404) {  
+        console.log("error");  
+      }  
+      
+      return <> {loading ? "loading" : JSON.stringify(data)}</>;  
+    }  
+    
+    function App() {  
+      return (  
+        <ApiConfigProvider  
+      axiosConfigParams={{ baseURL: "https://api.github.com/" }}  
+        >
+        <UseGetExample/>
+        </ApiConfigProvider>  
+      );  
+    }
+
