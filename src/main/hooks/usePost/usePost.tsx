@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useAxiosConfig } from "main/context";
-import { ApiCreate } from "main/utils/api-create";
+import { useAxiosConfig } from "../../context";
+import { ApiCreate } from "../../utils";
 
 interface UseHookProps {
   overrideAxios?: AxiosRequestConfig;

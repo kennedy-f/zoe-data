@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useAxiosConfig } from "main/context";
+import { useAxiosConfig } from "../../context";
 
 interface UseGetProps<Vars = any> {
   fetchOnInitialize: boolean;

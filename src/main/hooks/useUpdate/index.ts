@@ -1,1 +1,1 @@
-export * from "main/hooks/useUpdate/useUpdate";
+export * from "./useUpdate";

@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useAxiosConfig } from "main/context";
-import { ApiCreate } from "main/utils/api-create";
-import { GenerateUrlWithId } from "main/utils";
+import { useAxiosConfig } from "../../context";
+import { ApiCreate, GenerateUrlWithId } from "../../utils";
 
-interface UseUpdateProps<Vars = any> {
+interface UseUpdateProps {
   overrideAxios?: AxiosRequestConfig;
   customQuery?: string;
 }
 
-type FetchUpdateProps = Pick<
+type FetchUpdateProps<Vars> = Pick<
   AxiosRequestConfig,
   "data" | "headers" | "params"
 > & {
   method?: "PATCH" | "PUT";
   id: number;
+  variables: Vars;
 };
 
 export function useUpdate<Data = any, Vars = any>(
   query: string,
-  { overrideAxios, customQuery }: UseUpdateProps<Vars> = {}
+  { overrideAxios, customQuery }: UseUpdateProps = {}
 ) {
   const { axiosConfig } = useAxiosConfig();
 
@@ -39,12 +39,12 @@ export function useUpdate<Data = any, Vars = any>(
   const fetch = async ({
     method = "PATCH",
     ...fetchUpdateProps
-  }: FetchUpdateProps) => {
+  }: FetchUpdateProps<Vars>) => {
     setLoading(true);
     try {
       const response = await (method === "PATCH" ? api.patch : api.put)<Data>(
         GenerateUrlWithId(fetchUpdateProps.id, query, customQuery),
-        { fetchUpdateProps }
+        { ...fetchUpdateProps.variables }
       );
 
       setAxiosOriginalResponse(axiosOriginalResponse);
@@ -57,7 +57,7 @@ export function useUpdate<Data = any, Vars = any>(
     setLoading(false);
   };
 
-  const fetchUpdate = async (props: FetchUpdateProps) => {
+  const fetchUpdate = async (props: FetchUpdateProps<Vars>) => {
     await fetch(props);
   };
 

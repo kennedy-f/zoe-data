@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { AxiosRequestConfig } from "axios";
-import { useAxiosConfig } from "main/context";
-import { ApiCreate } from "main/utils/api-create";
-import { GenerateUrlWithId } from "main/utils/generate-url-with-id";
+import { useAxiosConfig } from "../../context";
+import { GenerateUrlWithId, ApiCreate } from "../../utils";
 
 interface UseDeleteProps {
   overrideAxios?: AxiosRequestConfig;

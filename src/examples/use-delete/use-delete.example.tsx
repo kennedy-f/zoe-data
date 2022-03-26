@@ -1,7 +1,5 @@
 import React from "react";
-import { ApiConfigProvider } from "main/context/ApiConfig/ApiConfig.provider";
-import { useDelete } from "main/hooks/useDelete";
-import { ZoeProvider } from "main";
+import { useDelete, ZoeProvider } from "../../main";
 
 interface UseDeleteExampleProps {}
 
