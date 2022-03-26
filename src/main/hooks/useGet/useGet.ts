@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useAxiosConfig } from "context";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { useAxiosConfig } from "main/context";
 
 interface UseGetProps<Vars = any> {
   fetchOnInitialize: boolean;
@@ -29,7 +29,7 @@ export function useGet<Data = any, Vars = any>(
   const [axiosOriginalResponse, setAxiosOriginalResponse] =
     useState<AxiosResponse<Data, any>>();
 
-  const api = Axios.create(axiosConfig);
+  const api = axios.create(axiosConfig);
 
   const fetch = async (fetchProps: FetchProps) => {
     setLoading(true);
@@ -53,7 +53,7 @@ export function useGet<Data = any, Vars = any>(
     if (fetchOnInitialize) {
       fetch({ variables, overrideAxios });
     }
-  });
+  }, []);
 
   const refetch = async (props: FetchProps) => {
     await fetch(props);

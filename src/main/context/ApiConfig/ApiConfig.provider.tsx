@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AxiosConfigContext } from "./AxiosConfigContext";
+import { AxiosConfigContext } from "main/context/ApiConfig/AxiosConfigContext";
 import { AxiosRequestConfig } from "axios";
 
 interface ApiConfigProviderProps {
