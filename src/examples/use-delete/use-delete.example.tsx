@@ -1,6 +1,7 @@
 import React from "react";
 import { ApiConfigProvider } from "main/context/ApiConfig/ApiConfig.provider";
 import { useDelete } from "main/hooks/useDelete";
+import { ZoeProvider } from "main";
 
 interface UseDeleteExampleProps {}
 
@@ -18,8 +19,8 @@ export function UseDeleteExample(props: UseDeleteExampleProps) {
 
 export function UseDeleteExampleCode() {
   return (
-    <ApiConfigProvider axiosConfigParams={{ baseURL: "http://localhost:3000" }}>
+    <ZoeProvider axiosConfigParams={{ baseURL: "http://localhost:3000" }}>
       <UseDeleteExample />
-    </ApiConfigProvider>
+    </ZoeProvider>
   );
 }

@@ -11,6 +11,9 @@
   ],
   "module": "src/main/index.ts",
   "main": "src/main/index.ts",
+  "files": [
+    "src/main"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kennedy-f/zoe-data"
