@@ -9,8 +9,8 @@
     "axios",
     "fetch"
   ],
-  "module": "src/main.ts",
-  "main": "src/main.ts",
+  "module": "src/main/index.ts",
+  "main": "src/main/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kennedy-f/zoe-data"
