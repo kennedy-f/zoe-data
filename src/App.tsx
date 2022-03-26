@@ -1,12 +1,6 @@
 import React from "react";
-import { ApiConfigProvider } from "context/ApiConfig/ApiConfig.provider";
+import { UseDeleteExampleCode } from "examples/use-delete/use-delete.example";
 
 export function App() {
-  return (
-    <ApiConfigProvider
-      axiosConfigParams={{ baseURL: "https://api.github.com/" }}
-    >
-      <> </>
-    </ApiConfigProvider>
-  );
+  return <UseDeleteExampleCode />;
 }
