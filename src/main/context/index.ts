@@ -1,1 +1,1 @@
-export * from "main/context/ApiConfig";
+export * from "./ApiConfig";

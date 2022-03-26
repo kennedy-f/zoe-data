@@ -1,1 +1,1 @@
-export * from "main/hooks/useGet";
+export * from "./useGet";

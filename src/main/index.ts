@@ -1,2 +1,2 @@
-export * from "main/context";
-export * from "main/hooks";
+export * from "./context";
+export * from "./hooks";
