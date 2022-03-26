@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import Axios, { AxiosResponse } from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useAxiosConfig } from "context";
 
 interface UseGetProps<Vars = any> {
   fetchOnInitialize: boolean;
   variables?: Vars;
+  overrideAxios?: AxiosRequestConfig;
 }
+
+type FetchProps = Omit<UseGetProps, "fetchOnInitialize">;
 
 export function useGet<Data = any, Vars = any>(
   query: string,
-  { fetchOnInitialize, variables }: UseGetProps<Vars> = {
+  { fetchOnInitialize, variables, overrideAxios }: UseGetProps<Vars> = {
     fetchOnInitialize: true,
   }
 ) {
@@ -28,12 +31,14 @@ export function useGet<Data = any, Vars = any>(
 
   const api = Axios.create(axiosConfig);
 
-  const fetch = async () => {
+  const fetch = async (fetchProps: FetchProps) => {
     setLoading(true);
     try {
       const response = await api.get<Data>(query, {
-        params: variables,
+        params: fetchProps.variables,
+        ...fetchProps.overrideAxios,
       });
+
       setAxiosOriginalResponse(axiosOriginalResponse);
       setData(response.data);
       setStatus(response.status);
@@ -46,9 +51,13 @@ export function useGet<Data = any, Vars = any>(
 
   useEffect(() => {
     if (fetchOnInitialize) {
-      fetch();
+      fetch({ variables, overrideAxios });
     }
   });
 
-  return { data, loading, status, error, axiosOriginalResponse };
+  const refetch = async (props: FetchProps) => {
+    await fetch(props);
+  };
+
+  return { data, loading, status, error, axiosOriginalResponse, refetch };
 }
