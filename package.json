@@ -1,6 +1,6 @@
 {
   "name": "zoe-data",
-  "version": "0.2.0",
+  "version": "0.3.0-rc.0",
   "private": false,
   "author": "Kennedy Silva",
   "keywords": [
@@ -9,8 +9,11 @@
     "axios",
     "fetch"
   ],
-  "module": "src/main.ts",
-  "main": "src/main.ts",
+  "module": "src/main/index.ts",
+  "main": "src/main/index.ts",
+  "files": [
+    "src/main"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kennedy-f/zoe-data"
@@ -19,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish": "npm publish"
   },
   "devDependencies": {
     "prettier": "^2.6.1",
