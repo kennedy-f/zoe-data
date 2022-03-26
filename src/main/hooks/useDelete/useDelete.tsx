@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AxiosRequestConfig } from "axios";
 import { useAxiosConfig } from "main/context";
 import { ApiCreate } from "main/utils/api-create";
+import { GenerateUrlWithId } from "main/utils/generate-url-with-id";
 
 interface UseDeleteProps {
   overrideAxios?: AxiosRequestConfig;
@@ -23,20 +24,18 @@ export function useDelete<Data = boolean>(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>();
 
-  const generateUrl = (deleteId: number) => {
-    if (customQuery) {
-      return customQuery.replace(/\$id/g, deleteId.toString());
-    }
-    return `${query}/${deleteId}`;
-  };
-
   const fetchDelete = async (
     id: number,
     { overrideAxios: fetchOverride }: FetchDeleteProps = {}
   ) => {
     setLoading(true);
     try {
-      const response = await api.delete(generateUrl(id), { ...fetchOverride });
+      const response = await api.delete(
+        GenerateUrlWithId(id, query, customQuery),
+        {
+          ...fetchOverride,
+        }
+      );
       setData(response.data);
       setStatus(response.status);
       setLoading(false);
