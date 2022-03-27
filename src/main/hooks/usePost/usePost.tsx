@@ -33,7 +33,7 @@ export function usePost<Data = any, Vars = any>(
   const fetch = async ({ variables }: FetchPostProps<Vars>) => {
     setLoading(true);
     try {
-      const response = await api.post<Data>(query, { variables });
+      const response = await api.post<Data>(query, { ...variables });
       setAxiosOriginalResponse(response);
       setData(response.data);
       setStatus(response.status);

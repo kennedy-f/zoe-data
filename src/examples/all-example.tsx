@@ -1,5 +1,5 @@
 import React from "react";
-import { useDelete, useGet, usePost, useUpdate } from "../../main";
+import { useDelete, useGet, usePost, useUpdate } from "../main";
 
 interface ResponseData {
   id: number;
@@ -20,7 +20,7 @@ export function AllExample() {
 
   const { fetchDelete } = useDelete<ResponseData>("/user");
 
-  const handlePost = async (id: number, data: RequestVars) => {
+  const handlePost = async (data: RequestVars) => {
     const created = await fetchPost({ variables: data });
     if (created.data) {
       console.log(created.data);
@@ -41,5 +41,15 @@ export function AllExample() {
     }
   };
 
-  return <div>... your code here</div>;
+  return (
+    <div>
+      <button onClick={() => handlePost({ name: "Gold D. Roger" })}>
+        Post
+      </button>
+      <button onClick={() => handleUpdate(1, { name: "Monkey D Luffy" })}>
+        update
+      </button>
+      <button onClick={() => handleDelete(1)}> delete </button>
+    </div>
+  );
 }

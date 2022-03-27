@@ -1,6 +1,13 @@
 import React from "react";
-import { UseDeleteExampleCode } from "examples/use-delete/use-delete.example";
+import { AllExample } from "./examples/all-example";
+import { ApiConfigProvider } from "./main/context/ApiConfig/ApiConfig.provider";
 
 export function App() {
-  return <UseDeleteExampleCode />;
+  return (
+    <ApiConfigProvider
+      axiosConfigParams={{ baseURL: "https://localhost:3001" }}
+    >
+      <AllExample />
+    </ApiConfigProvider>
+  );
 }
