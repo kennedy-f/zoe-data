@@ -18,6 +18,15 @@ All the hooks that modify data don't run in the moment they are created, for thi
 #### Examples
 
 ```
+interface ResponseData {
+  id: number;
+  name: string;
+}
+
+interface RequestVars {
+  name: string;
+}
+
 function HooksExample() { 
 	const { data, loading, status, error, axiosOriginalResponse, refetch } =  
 	  useGet<ResponseData>("/user");  
