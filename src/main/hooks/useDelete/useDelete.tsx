@@ -38,7 +38,13 @@ export function useDelete<Data = boolean>(
       setData(response.data);
       setStatus(response.status);
       setLoading(false);
+      return {
+        data: response.data,
+        status: response.status,
+        axiosOriginalResponse: response,
+      };
     } catch (err) {
+      setLoading(false);
       setError(err);
     }
   };

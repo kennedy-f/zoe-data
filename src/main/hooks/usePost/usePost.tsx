@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useAxiosConfig } from "../../context";
 import { ApiCreate } from "../../utils";
 
@@ -13,7 +13,7 @@ interface FetchPostProps<Vars = any> {
 
 export function usePost<Data = any, Vars = any>(
   query: string,
-  { overrideAxios }: UseHookProps
+  { overrideAxios }: UseHookProps = {}
 ) {
   const { axiosConfig } = useAxiosConfig();
 
@@ -34,18 +34,24 @@ export function usePost<Data = any, Vars = any>(
     setLoading(true);
     try {
       const response = await api.post<Data>(query, { variables });
-      setAxiosOriginalResponse(axiosOriginalResponse);
+      setAxiosOriginalResponse(response);
       setData(response.data);
       setStatus(response.status);
+      setLoading(false);
+      return {
+        data: response.data,
+        status: response.status,
+        error: undefined,
+        axiosOriginalResponse: response,
+      };
     } catch (err) {
+      setLoading(false);
       setError(err);
     }
-
-    setLoading(false);
   };
 
   const fetchPost = async (props: FetchPostProps<Vars>) => {
-    await fetch(props);
+    return await fetch(props);
   };
 
   return {
