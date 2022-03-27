@@ -5,6 +5,7 @@
   "author": "Kennedy Silva",
   "module": "src/main/index.ts",
   "main": "src/main/index.ts",
+  "license": "MIT",
   "files": [
     "src/main"
   ],
