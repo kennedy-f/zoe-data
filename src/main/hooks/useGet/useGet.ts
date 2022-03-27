@@ -55,7 +55,7 @@ export function useGet<Data = any, Vars = any>(
     }
   }, []);
 
-  const refetch = async (props: FetchProps) => {
+  const refetch = async (props: FetchProps = { variables, overrideAxios }) => {
     await fetch(props);
   };
 
