@@ -95,7 +95,7 @@ Will run a axios.get() and bring to you the data.
 
 ### refetch
 
-Refetch is a function that will do the fetch again, this comes from the hook you can pass new params if you need. 
+Refetch is a function that will do the fetch again, you can pass new params if you need. 
 
 ### useUpdate
 
