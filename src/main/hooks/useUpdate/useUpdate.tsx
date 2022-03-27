@@ -8,7 +8,7 @@ interface UseUpdateProps {
   customQuery?: string;
 }
 
-type FetchUpdateProps<Vars> = Pick<
+type FetchUpdateProps<Vars = any> = Pick<
   AxiosRequestConfig,
   "data" | "headers" | "params"
 > & {
@@ -47,18 +47,26 @@ export function useUpdate<Data = any, Vars = any>(
         { ...fetchUpdateProps.variables }
       );
 
-      setAxiosOriginalResponse(axiosOriginalResponse);
+      setAxiosOriginalResponse(response);
       setData(response.data);
       setStatus(response.status);
+      setLoading(false);
+      return {
+        data: response.data,
+        status: response.status,
+        axiosOriginalResponse: response,
+      };
     } catch (err) {
+      setLoading(false);
       setError(err);
+      return {
+        error: err,
+      };
     }
-
-    setLoading(false);
   };
 
   const fetchUpdate = async (props: FetchUpdateProps<Vars>) => {
-    await fetch(props);
+    return await fetch(props);
   };
 
   return {
