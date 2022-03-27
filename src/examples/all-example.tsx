@@ -1,5 +1,6 @@
 import React from "react";
-import { useDelete, useGet, usePost, useUpdate } from "../../main";
+import { useDelete, useGet, usePost, useUpdate } from "../main";
+import { ApiConfigProvider } from "../main/context/ApiConfig/ApiConfig.provider";
 
 interface ResponseData {
   id: number;
@@ -10,7 +11,7 @@ interface RequestVars {
   name: string;
 }
 
-export function AllExample() {
+export function AllHooksExample() {
   const { data, loading, status, error, axiosOriginalResponse, refetch } =
     useGet<ResponseData>("/user");
 
@@ -20,7 +21,7 @@ export function AllExample() {
 
   const { fetchDelete } = useDelete<ResponseData>("/user");
 
-  const handlePost = async (id: number, data: RequestVars) => {
+  const handlePost = async (data: RequestVars) => {
     const created = await fetchPost({ variables: data });
     if (created.data) {
       console.log(created.data);
@@ -41,5 +42,23 @@ export function AllExample() {
     }
   };
 
-  return <div>... your code here</div>;
+  return (
+    <div>
+      <button onClick={() => handlePost({ name: "Gold D. Roger" })}>
+        Post
+      </button>
+      <button onClick={() => handleUpdate(1, { name: "Monkey D Luffy" })}>
+        update
+      </button>
+      <button onClick={() => handleDelete(1)}> delete </button>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ApiConfigProvider axiosConfigParams={{ baseURL: "http://localhost:3001" }}>
+      <AllHooksExample />
+    </ApiConfigProvider>
+  );
 }
