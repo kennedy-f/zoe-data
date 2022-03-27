@@ -21,16 +21,25 @@ export function AllExample() {
   const { fetchDelete } = useDelete<ResponseData>("/user");
 
   const handlePost = async (id: number, data: RequestVars) => {
-    await fetchPost({ variables: data });
+    const created = await fetchPost({ variables: data });
+    if (created.data) {
+      console.log(created.data);
+    }
   };
 
   const handleUpdate = async (id: number, data: RequestVars) => {
-    await fetchUpdate({ id: 1, variables: data });
+    const updated = await fetchUpdate({ id: 1, variables: data });
+    if (updated.data) {
+      console.log(updated.data);
+    }
   };
 
   const handleDelete = async (id: number) => {
-    await fetchDelete(id);
+    const deleted = await fetchDelete(id);
+    if (deleted.data) {
+      console.log(deleted.data);
+    }
   };
 
-  return <div></div>;
+  return <div>... your code here</div>;
 }

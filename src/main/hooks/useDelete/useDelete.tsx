@@ -46,6 +46,9 @@ export function useDelete<Data = boolean>(
     } catch (err) {
       setLoading(false);
       setError(err);
+      return {
+        error: err,
+      };
     }
   };
 

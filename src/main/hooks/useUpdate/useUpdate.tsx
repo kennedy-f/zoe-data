@@ -59,6 +59,9 @@ export function useUpdate<Data = any, Vars = any>(
     } catch (err) {
       setLoading(false);
       setError(err);
+      return {
+        error: err,
+      };
     }
   };
 
