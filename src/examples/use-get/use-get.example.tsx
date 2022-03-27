@@ -1,5 +1,6 @@
 import React from "react";
 import { useGet } from "../../main";
+import { ApiConfigProvider } from "../../main/context/ApiConfig/ApiConfig.provider";
 
 interface ResponseData {
   id: number;
@@ -27,5 +28,13 @@ export function UseGetExample() {
         ))}
       </div>
     </>
+  );
+}
+
+function App() {
+  return (
+    <ApiConfigProvider axiosConfigParams={{ baseURL: "http://localhost:3001" }}>
+      <UseGetExample />
+    </ApiConfigProvider>
   );
 }
