@@ -1,5 +1,6 @@
 import React from "react";
 import { useDelete, useGet, usePost, useUpdate } from "../main";
+import { ApiConfigProvider } from "../main/context/ApiConfig/ApiConfig.provider";
 
 interface ResponseData {
   id: number;
@@ -10,7 +11,7 @@ interface RequestVars {
   name: string;
 }
 
-export function AllExample() {
+export function AllHooksExample() {
   const { data, loading, status, error, axiosOriginalResponse, refetch } =
     useGet<ResponseData>("/user");
 
@@ -51,5 +52,13 @@ export function AllExample() {
       </button>
       <button onClick={() => handleDelete(1)}> delete </button>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ApiConfigProvider axiosConfigParams={{ baseURL: "http://localhost:3001" }}>
+      <AllExample />
+    </ApiConfigProvider>
   );
 }
