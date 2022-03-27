@@ -1,5 +1,5 @@
 import React from "react";
-import { useDelete, ZoeProvider } from "../../main";
+import { useDelete, useUpdate, ZoeProvider } from "../../main";
 
 interface UseDeleteExampleProps {}
 
@@ -7,6 +7,11 @@ export function UseDeleteExample(props: UseDeleteExampleProps) {
   const { fetchDelete } = useDelete("/teste", {
     customQuery: "teste/$id/delete",
   });
+  const { fetchUpdate } = useUpdate<{ name: string }>("/test");
+
+  const handleUpdate = async () => {
+    await fetchUpdate({ id: 1, variables: { name: "John Doe" } });
+  };
 
   return (
     <div>
