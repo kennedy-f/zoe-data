@@ -78,7 +78,7 @@ export function AllHooksExample() {
 function App() {
   return (
     <ApiConfigProvider axiosConfigParams={{ baseURL: "http://localhost:3001" }}>
-      <AllExample />
+      <AllHooksExample />
     </ApiConfigProvider>
   );
 }
