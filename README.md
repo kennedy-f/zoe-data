@@ -1,4 +1,5 @@
 
+
 # Zoe data
 
 This library provides hooks to make your APIs calls. 
@@ -11,6 +12,47 @@ Inspired by [Apollo Client](https://www.apollographql.com/docs/react/)
 This package is under construction and this doc will be updated
 
 ## Hooks
+
+All the hooks that modify data don't run in the moment they are created, for this use the fetch function they give to you. 
+
+#### Examples
+
+```
+function HooksExample() { 
+	const { data, loading, status, error, axiosOriginalResponse, refetch } =  
+	  useGet<ResponseData>("/user");  
+	  
+	const { fetchPost } = usePost<ResponseData, RequestVars>("/user");  
+	  
+	const { fetchUpdate } = useUpdate<ResponseData, RequestVars>("/user");  
+	  
+	const { fetchDelete } = useDelete<ResponseData>("/user");  
+	  
+	const handlePost = async (id: number, data: RequestVars) => {  
+	  const created = await fetchPost({ variables: data });  
+	  if (created.data) {  
+	    console.log(created.data);  
+	  }  
+	};  
+	  
+	const handleUpdate = async (id: number, data: RequestVars) => {  
+	  const updated = await fetchUpdate({ id: 1, variables: data });  
+	  if (updated.data) {  
+	    console.log(updated.data);  
+	  }  
+	};  
+	  
+	const handleDelete = async (id: number) => {  
+	  const deleted = await fetchDelete(id);  
+	  if (deleted.data) {  
+	    console.log(deleted.data);  
+	  }  
+	};  
+	  
+	return <div>... your code here</div>;
+}
+
+```
 
 ### useGet
 Will run a axios.get() and bring to you the data.
@@ -42,3 +84,22 @@ Will run a axios.get() and bring to you the data.
       );  
     }
 
+
+#### Params 
+| NAME | TYPE | REQUIRED  | |
+|--|--|--|--|
+| query | string | true | first param 
+| fetchOnInitialize | boolean | false | 
+| variables | generic | false |
+| overrideAxios | AxiosRequestConfig | false
+
+### refetch
+
+Refetch is a function that will do the fetch again, this comes from the hook and receives all the hooks params again with you need. 
+
+### useUpdate
+
+
+```
+
+```
