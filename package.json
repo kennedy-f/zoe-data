@@ -1,6 +1,6 @@
 {
   "name": "zoe-data",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": false,
   "author": "Kennedy Silva",
   "module": "src/main/index.ts",
