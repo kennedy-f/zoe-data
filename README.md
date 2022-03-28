@@ -157,10 +157,6 @@ Will run a axios.get() and bring to you the data.
 | variables | generic | false 
 | overrideAxios | AxiosRequestConfig | false
 
-### refetch
-
-Refetch is a function that will do the fetch again, you can pass new params if you need. 
-
 ### useUpdate
 
 
