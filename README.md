@@ -11,13 +11,48 @@ Inspired by [Apollo Client](https://www.apollographql.com/docs/react/)
 
 This package is under construction and this doc will be updated
 
+## Installation 
+
+**Yarn**
+```yarn
+yarn add zoe-data
+```
+
+**NPM**
+```npm
+npm install --save zoejs/zoe
+```
+
+### Usage 
+
+```typescript jsx
+import { useGet, ZoeProvider } from 'zoe-data'
+
+function App() { 
+  return (
+    <ZoeProvider axiosConfigParams={{ baseURL: "http://localhost:3001" }}>
+      {InitialExample}
+    </ZoeProvider>
+  )
+} 
+
+function Example() {
+  const {data} = useGet('/users') 
+  
+  return (
+    <> JSON.stringify(data) </>
+  )
+} 
+
+```
+
 ## Hooks
 
 All the hooks that modify data don't run in the moment they are created, for this use the fetch function they give to you. 
 
 #### Examples
 
-```
+```tsx
 import React from "react";
 import { useDelete, useGet, usePost, useUpdate } from "../main";
 import { ApiConfigProvider } from "../main/context/ApiConfig/ApiConfig.provider";
@@ -88,7 +123,7 @@ function App() {
 Will run a axios.get() and bring to you the data.
 
 #### Usage
-
+```tsx
     import React from "react";    
     import { useGet, ApiConfigProvider} from 'zoe-data'
     
@@ -113,7 +148,7 @@ Will run a axios.get() and bring to you the data.
         </ApiConfigProvider>  
       );  
     }
-
+```
 
 #### Params 
 | NAME | TYPE | REQUIRED  | |

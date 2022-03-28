@@ -1,13 +1,13 @@
 import React from "react";
-import { AllExample } from "./examples/all-example";
 import { ApiConfigProvider } from "./main/context/ApiConfig/ApiConfig.provider";
+import { AllHooksExample } from "./examples/all-example";
 
 export function App() {
   return (
     <ApiConfigProvider
       axiosConfigParams={{ baseURL: "https://localhost:3001" }}
     >
-      <AllExample />
+      <AllHooksExample />
     </ApiConfigProvider>
   );
 }
