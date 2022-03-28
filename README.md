@@ -151,11 +151,10 @@ Will run a axios.get() and bring to you the data.
 ```
 
 #### Params 
-| NAME | TYPE | REQUIRED  | |
-|--|--|--|--|
-| query | string | true | first param 
-| fetchOnInitialize | boolean | false | 
-| variables | generic | false |
+| NAME | TYPE | REQUIRED  | 
+|--|--|--|
+| fetchOnInitialize | boolean | false 
+| variables | generic | false 
 | overrideAxios | AxiosRequestConfig | false
 
 ### refetch
