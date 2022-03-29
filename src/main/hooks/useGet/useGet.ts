@@ -42,11 +42,19 @@ export function useGet<Data = any, Vars = any>(
       setAxiosOriginalResponse(axiosOriginalResponse);
       setData(response.data);
       setStatus(response.status);
+      setLoading(false);
+      return {
+        data: response.data,
+        status: response.status,
+        axiosOriginalResponse: axiosOriginalResponse,
+      };
     } catch (err) {
       setError(err);
+      setLoading(false);
+      return {
+        error: err,
+      };
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -56,7 +64,7 @@ export function useGet<Data = any, Vars = any>(
   }, []);
 
   const refetch = async (props: FetchProps = { variables, overrideAxios }) => {
-    await fetch(props);
+    return fetch(props);
   };
 
   return { data, loading, status, error, axiosOriginalResponse, refetch };

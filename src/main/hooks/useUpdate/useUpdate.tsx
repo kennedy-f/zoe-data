@@ -8,14 +8,18 @@ interface UseUpdateProps {
   customQuery?: string;
 }
 
-type FetchUpdateProps<Vars = any> = Pick<
+type useUpdateMethods = "PATCH" | "PUT";
+
+type UseUpdateFetchProps<Vars = any> = Pick<
   AxiosRequestConfig,
   "data" | "headers" | "params"
 > & {
-  method?: "PATCH" | "PUT";
+  method?: useUpdateMethods;
   id: number;
   variables: Vars;
 };
+
+type FetchUpdate = Omit<UseUpdateFetchProps, "id" | "variables">;
 
 export function useUpdate<Data = any, Vars = any>(
   query: string,
@@ -39,7 +43,7 @@ export function useUpdate<Data = any, Vars = any>(
   const fetch = async ({
     method = "PATCH",
     ...fetchUpdateProps
-  }: FetchUpdateProps<Vars>) => {
+  }: UseUpdateFetchProps<Vars>) => {
     setLoading(true);
     try {
       const response = await (method === "PATCH" ? api.patch : api.put)<Data>(
@@ -65,8 +69,12 @@ export function useUpdate<Data = any, Vars = any>(
     }
   };
 
-  const fetchUpdate = async (props: FetchUpdateProps<Vars>) => {
-    return await fetch(props);
+  const fetchUpdate = async (
+    id: number,
+    variables: Vars,
+    props: FetchUpdate = {}
+  ) => {
+    return await fetch({ id, variables, ...props });
   };
 
   return {

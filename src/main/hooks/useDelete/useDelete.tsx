@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useAxiosConfig } from "../../context";
-import { GenerateUrlWithId, ApiCreate } from "../../utils";
+import { ApiCreate, GenerateUrlWithId } from "../../utils";
 
 interface UseDeleteProps {
   overrideAxios?: AxiosRequestConfig;
@@ -22,6 +22,8 @@ export function useDelete<Data = boolean>(
   const [status, setStatus] = useState<number>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>();
+  const [axiosOriginalResponse, setAxiosOriginalResponse] =
+    useState<AxiosResponse>();
 
   const fetchDelete = async (
     id: number,
@@ -35,6 +37,7 @@ export function useDelete<Data = boolean>(
           ...fetchOverride,
         }
       );
+      setAxiosOriginalResponse(response);
       setData(response.data);
       setStatus(response.status);
       setLoading(false);
@@ -52,5 +55,5 @@ export function useDelete<Data = boolean>(
     }
   };
 
-  return { fetchDelete, loading, data, status, error };
+  return { fetchDelete, loading, data, status, error, axiosOriginalResponse };
 }
