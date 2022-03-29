@@ -36,10 +36,14 @@ you.
 
 All the hooks returns this, and they **fetch functions return the same except for the loading**.
 
-Name | Type | Description | - | - | - | loading | boolean | Will be true when the request is running error | object |
-Will be the error if the request fails data | object | Will be the data if the request succeeds status | number | Will
-be the status code of the response axiosOriginalResponse | object | Will be the axios response fetch | function | Will
-be the fetch function that you can use to fetch the data, the name will change by hook
+Name | Type | Description 
+| - | - | - | 
+loading | boolean | Will be true when the request is running
+error | object | Will be the error if the request fails 
+data | object | Will be the data if the request succeeds 
+status | number | Will be the status code of the response 
+axiosOriginalResponse | object | Will be the axios response 
+fetch | function | Will be the fetch function that you can use to fetch the data, the name will change by hook
 
 ### Example
 
@@ -143,11 +147,6 @@ function App() {
   );
 }
 ```
-
-#### Params
-
-| NAME | TYPE | REQUIRED | |--|--|--| | fetchOnInitialize | boolean | false | variables | generic | false |
-overrideAxios | AxiosRequestConfig | false
 
 ### useUpdate
 
