@@ -23,15 +23,15 @@ export function AllHooksExample() {
 
   const { fetchDelete } = useDelete<ResponseData>("/user");
 
-  const handlePost = async (data: RequestVars) => {
-    const created = await fetchPost(data);
+  const handlePost = async (vars: RequestVars) => {
+    const created = await fetchPost(vars);
     if (created.data) {
       console.log(created.data);
     }
   };
 
-  const handleUpdate = async (id: number, data: RequestVars) => {
-    const updated = await fetchUpdate(id, data, {
+  const handleUpdate = async (id: number, vars: RequestVars) => {
+    const updated = await fetchUpdate(id, vars, {
       method: "PUT",
     });
     if (updated.data) {
