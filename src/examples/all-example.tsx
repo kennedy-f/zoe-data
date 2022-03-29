@@ -17,7 +17,9 @@ export function AllHooksExample() {
 
   const { fetchPost } = usePost<ResponseData, RequestVars>("/user");
 
-  const { fetchUpdate } = useUpdate<ResponseData, RequestVars>("/user");
+  const { fetchUpdate } = useUpdate<ResponseData, RequestVars>("/user", {
+    customQuery: "/users/$id/test",
+  });
 
   const { fetchDelete } = useDelete<ResponseData>("/user");
 
@@ -29,7 +31,11 @@ export function AllHooksExample() {
   };
 
   const handleUpdate = async (id: number, data: RequestVars) => {
-    const updated = await fetchUpdate({ id: 1, variables: data });
+    const updated = await fetchUpdate({
+      id: 1,
+      variables: data,
+      method: "PUT",
+    });
     if (updated.data) {
       console.log(updated.data);
     }
