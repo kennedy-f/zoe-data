@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useAxiosConfig } from "../../context";
 import { ApiCreate } from "../../utils";
 
@@ -7,8 +7,9 @@ interface UseHookProps {
   overrideAxios?: AxiosRequestConfig;
 }
 
-interface FetchPostProps<Vars = any> {
+interface UsePostFetchProps<Vars = any> {
   variables: Vars;
+  requestConfig?: AxiosRequestConfig;
 }
 
 export function usePost<Data = any, Vars = any>(
@@ -30,10 +31,17 @@ export function usePost<Data = any, Vars = any>(
 
   const api = ApiCreate(axiosConfig, overrideAxios);
 
-  const fetch = async ({ variables }: FetchPostProps<Vars>) => {
+  const fetch = async ({
+    variables,
+    requestConfig,
+  }: UsePostFetchProps<Vars>) => {
     setLoading(true);
     try {
-      const response = await api.post<Data>(query, { ...variables });
+      const response = await api.post<Data>(
+        query,
+        { ...variables },
+        { ...requestConfig }
+      );
       setAxiosOriginalResponse(response);
       setData(response.data);
       setStatus(response.status);
@@ -51,8 +59,11 @@ export function usePost<Data = any, Vars = any>(
     }
   };
 
-  const fetchPost = async (props: FetchPostProps<Vars>) => {
-    return await fetch(props);
+  const fetchPost = async (
+    vars: Vars,
+    props: Omit<UsePostFetchProps, "variables"> = {}
+  ) => {
+    return fetch({ variables: vars, ...props });
   };
 
   return {
