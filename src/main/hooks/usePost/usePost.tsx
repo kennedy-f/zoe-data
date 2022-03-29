@@ -63,7 +63,7 @@ export function usePost<Data = any, Vars = any>(
     vars: Vars,
     props: Omit<UsePostFetchProps, "variables"> = {}
   ) => {
-    return await fetch({ variables: vars, ...props });
+    return fetch({ variables: vars, ...props });
   };
 
   return {
