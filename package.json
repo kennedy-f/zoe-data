@@ -25,7 +25,10 @@
     "publish": "npm publish"
   },
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^0.26.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
   },
   "devDependencies": {
     "react": "^17.0.2",
