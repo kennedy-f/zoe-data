@@ -22,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
+    "build:library": "tsc --project tsconfig.json --noEmit false ",
     "publish": "npm publish"
   },
   "dependencies": {
