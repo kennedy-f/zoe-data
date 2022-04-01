@@ -24,7 +24,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "build:library": "tsc --project tsconfig.json --noEmit false --declaration true --declarationDir dist",
-    "postinstall": "yarn build:library"
+    "prepublish": "yarn build:library"
   },
   "dependencies": {
     "axios": "^0.26.1"
