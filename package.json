@@ -23,8 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "build:library": "tsc --project tsconfig.json --noEmit false ",
-    "publish": "npm publish"
+    "build:library": "tsc --project tsconfig.json --noEmit false --declaration true --declarationDir dist",
+    "publish": "build:library && npm publish"
   },
   "dependencies": {
     "axios": "^0.26.1"
