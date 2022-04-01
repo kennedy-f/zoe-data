@@ -3,7 +3,7 @@
   "version": "0.6.0-rc.0",
   "private": false,
   "author": "Kennedy Silva",
-  "module": "src/main/index.ts",
+  "module": "dist/index.js",
   "main": "dist/index.js",
   "license": "MIT",
   "types": "src/main/index.ts",
