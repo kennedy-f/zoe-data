@@ -1,0 +1,1 @@
+{"version":3,"file":"api-create.js","sourceRoot":"","sources":["../../src/main/utils/api-create.ts"],"names":[],"mappings":";;;;;;;;;;;AACA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B,MAAM,UAAU,SAAS,CACvB,iBAAqC,EACrC,yBAA8C;IAE9C,OAAO,KAAK,CAAC,MAAM,uBAAM,iBAAiB,GAAK,yBAAyB,EAAG,CAAC;AAC9E,CAAC"}

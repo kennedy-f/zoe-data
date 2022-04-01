@@ -4,8 +4,9 @@
   "private": false,
   "author": "Kennedy Silva",
   "module": "src/main/index.ts",
-  "main": "src/main/index.ts",
+  "main": "dist/index.js",
   "license": "MIT",
+  "types": "src/main/index.ts",
   "files": [
     "src/main"
   ],
