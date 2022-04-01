@@ -8,7 +8,7 @@
   "license": "MIT",
   "types": "src/main/index.ts",
   "files": [
-    "src/main"
+    "dist"
   ],
   "repository": {
     "type": "git",
