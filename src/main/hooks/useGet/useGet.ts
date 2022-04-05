@@ -38,11 +38,10 @@ export function useGet<Data = any, Vars = any>(
         params: fetchProps.variables,
         ...fetchProps.overrideAxios,
       });
-
+      setLoading(false);
       setAxiosOriginalResponse(axiosOriginalResponse);
       setData(response.data);
       setStatus(response.status);
-      setLoading(false);
       return {
         data: response.data,
         status: response.status,
